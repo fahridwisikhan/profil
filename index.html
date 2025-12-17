@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile & Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABEL WARNA (Ganti di sini untuk kustomisasi) --- */
+        :root {
+            --bg-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #4F46E5; /* Warna Ungu Kebiruan */
+            --button-bg: #ffffff;
+            --button-text: #333333;
+            --button-hover: #4F46E5;
+            --button-hover-text: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- RESET & GLOBAL --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* --- CONTAINER UTAMA (Mobile View di Desktop) --- */
+        .container {
+            width: 100%;
+            max-width: 480px; /* Lebar maksimal seperti HP */
+            background-color: var(--container-bg);
+            padding: 40px 20px;
+            box-shadow: var(--shadow);
+            min-height: 100vh;
+        }
+
+        /* --- 1. HEADER PROFIL --- */
+        header { text-align: center; margin-bottom: 30px; }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 10px;
+        }
+        header h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+        header p { font-size: 0.9rem; color: #666; max-width: 80%; margin: 0 auto; }
+
+        /* --- 2. BUTTON LINKS (Main) --- */
+        .links-section { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            border-radius: 50px; /* Full Rounded */
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+        .link-btn i { margin-right: 10px; font-size: 1.2rem; }
+        .link-btn:hover {
+            background: var(--button-hover);
+            color: var(--button-hover-text);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        /* --- 3. SECTION AFFILIATE --- */
+        .section-title {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+        .affiliate-grid {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .affiliate-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+        .affiliate-card:hover { border-color: var(--accent-color); }
+        .badge {
+            background: #FF5252;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* --- 4. FORM INTERAKTIF --- */
+        .form-container {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; margin-bottom: 5px; font-weight: 500; }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            outline: none;
+        }
+        .form-control:focus { border-color: var(--accent-color); }
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background: #3730a3; }
+
+        /* --- 5. EMBED PLACEHOLDERS --- */
+        .embed-container {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            min-height: 200px; /* Contoh tinggi */
+        }
+        
+        /* --- 6. CTA & FOOTER --- */
+        .cta-section { text-align: center; margin-bottom: 40px; }
+        .cta-btn-large {
+            display: inline-block;
+            background: var(--text-color);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .cta-btn-large:hover { transform: scale(1.05); }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .footer-icons a {
+            color: #888;
+            margin: 0 5px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .footer-icons a:hover { color: var(--accent-color); }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <img src="../../favicon.jpg" alt="Foto Profil" class="profile-img">
+            <h1>Nama Brand Anda</h1>
+            <p>Digital Creator & Entrepreneur. Membantu Anda tumbuh di dunia digital.</p>
+        </header>
+
+        <section class="links-section">
+            <a href="https://www.tiktok.com/@fds0k" target="_blank" class="link-btn">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://www.instagram.com/fahridwis05/" target="_blank" class="link-btn">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.youtube.com/@FAHRI-DS" target="_blank" class="link-btn">
+                <i class="fab fa-youtube"></i> YouTube Channel
+            </a>
+            <a href="https://wa.me/6281287927192" target="_blank" class="link-btn">
+                <i class="fab fa-whatsapp"></i> Chat WhatsApp
+            </a>
+            <a href="https://fahridwisikhan.github.io/portofolio/" target="_blank" class="link-btn">
+                <i class="fas fa-globe"></i> Website / Portfolio
+            </a>
+        </section>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <section id="affiliate">
+            <div class="section-title">Rekomendasi Produk</div>
+            <div class="affiliate-grid">
+                <a href="#" class="affiliate-card">
+                    <span>📚 Buku Bisnis Pemula</span>
+                    <span class="badge">Best Seller</span>
+                </a>
+                <a href="#" class="affiliate-card">
+                    <span>💡 Ring Light Studio</span>
+                    <i class="fas fa-chevron-right" style="color:#ccc"></i>
+                </a>
+                <a href="#" class="affiliate-card">
+                    <span>🎤 Mic Wireless Murah </span>
+                    <i class="fas fa-chevron-right" style="color:#ccc"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="media">
+            <div class="section-title">Video Terbaru</div>
+            <div class="embed-container">
+                <p style="font-size: 0.8rem; color: #aaa;"><iframe width="560" height="315" src="https://www.youtube.com/embed/uWW11DPR4a4?si=UIzag4i6B8kJk3Kb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+                </div>
+        </section>
+
+        <section id="contact-form" class="form-container">
+            <div class="section-title" style="margin-top:0;">Tanya / Pesan Jasa</div>
+            <form onsubmit="sendToWhatsapp(event)">
+                <div class="form-group">
+                    <label>Nama Anda</label>
+                    <input type="text" id="name" class="form-control" placeholder="Tulis nama..." required>
+                </div>
+                <div class="form-group">
+                    <label>Minat / Kategori</label>
+                    <select id="interest" class="form-control">
+                        <option value="Tanya Produk">Tanya Produk</option>
+                        <option value="Konsultasi">Konsultasi</option>
+                        <option value="Kerjasama">Kerjasama / Endorse</option>
+                        <option value="Pesanan">Pesanan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Pesan Singkat</label>
+                    <textarea id="message" rows="3" class="form-control" placeholder="Tulis pesan..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+                </button>
+            </form>
+        </section>
+
+        <div class="cta-section">
+            <a href="https://wa.me/6281287927192" class="cta-btn-large">Hubungi Sekarang</a>
+        </div>
+
+        <footer>
+            <div class="footer-icons">
+                <a href="https://www.instagram.com/fahridwis05/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@fds0k"><i class="fab fa-tiktok"></i></a>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new"><i class="far fa-envelope"></i></a>
+            </div>
+            <p style="margin-top: 10px;">&copy; 2025 Nama Brand. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+            
+            const myPhoneNumber = "6281287927192"; 
+
+            // 2. Ambil data dari form
+            const name = document.getElementById('name').value;
+            const interest = document.getElementById('interest').value;
+            const message = document.getElementById('message').value;
+
+            // 3. Buat Format Pesan
+            const text = `Halo, saya *${name}*.\nSaya tertarik perihal: *${interest}*.\n\nPesan: ${message}`;
+
+            // 4. Encode URL agar spasi dan simbol terbaca
+            const encodedText = encodeURIComponent(text);
+
+            // 5. Buka WhatsApp
+            window.open(`https://wa.me/${myPhoneNumber}?text=${encodedText}`, '_blank');
+        }
+
+        // Smooth Scroll untuk tombol CTA
+        document.querySelector('.cta-btn-large').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
